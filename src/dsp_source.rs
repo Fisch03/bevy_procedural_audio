@@ -1,20 +1,11 @@
 //! Module for [`DspSource`],
 //! a type that is analogous to `AudioSource` in `bevy_audio`.
 
-use std::{
-  cell::RefCell,
-  sync::Arc,
-};
+use std::{cell::RefCell, sync::Arc};
 
-use bevy::{
-  asset::Asset,
-  reflect::TypePath,
-};
+use bevy::{asset::Asset, reflect::TypePath};
 
-use fundsp::{
-  audiounit::AudioUnit,
-  wave::Wave,
-};
+use fundsp::{audiounit::AudioUnit, wave::Wave};
 
 use crate::dsp_graph::DspGraph;
 

@@ -58,7 +58,7 @@ fn setup(
 fn interactive_audio(input: Res<ButtonInput<KeyCode>>, mut query: Query<(&mut AudioSink, &Dsp)>) {
     if input.just_pressed(KeyCode::KeyS) {
         for (sink, _) in query.iter_mut().filter(|(_s, d)| **d == Dsp::Sine) {
-          sink.toggle_playback();
+            sink.toggle_playback();
         }
     }
 

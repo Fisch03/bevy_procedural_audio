@@ -30,22 +30,12 @@
 //! [Bevy]: https://bevyengine.org/
 
 use {
-  backend::{
-    Backend,
-    DefaultBackend,
-  },
-  bevy::prelude::{
-    AssetApp,
-    App,
-    Plugin,
-  },
-  dsp_graph::DspGraph,
-  dsp_manager::DspManager,
-  dsp_source::{
-    DspSource,
-    SourceType,
-  },
-  once_cell::sync::Lazy,
+    backend::{Backend, DefaultBackend},
+    bevy::prelude::{App, AssetApp, Plugin},
+    dsp_graph::DspGraph,
+    dsp_manager::DspManager,
+    dsp_source::{DspSource, SourceType},
+    once_cell::sync::Lazy,
 };
 
 pub mod backend;
@@ -66,32 +56,32 @@ pub mod dsp_source;
 ///     .run();
 /// ```
 pub struct DspPlugin {
-  sample_rate: f32,
+    sample_rate: f32,
 }
 
 impl DspPlugin {
-  /// Construct the plugin given the sample rate.
-  ///
-  /// It is recommended to use the [`Default`]
-  /// implementation to avoid problems with audio output.
-  ///
-  /// Internally, the default plugin gets the sample rate
-  /// of the device using [`cpal`].
-  ///
-  /// ```no_run
-  /// # use bevy::prelude::*;
-  /// # use bevy_procedural_audio::prelude::*;
-  /// App::new()
-  ///     .add_plugins((
-  ///         DefaultPlugins,
-  ///         DspPlugin::new(44_100.0),
-  ///     ))
-  ///     .run();
-  /// ```
-  #[allow(clippy::must_use_candidate)]
-  pub fn new(sample_rate: f32) -> Self {
-    Self { sample_rate }
-  }
+    /// Construct the plugin given the sample rate.
+    ///
+    /// It is recommended to use the [`Default`]
+    /// implementation to avoid problems with audio output.
+    ///
+    /// Internally, the default plugin gets the sample rate
+    /// of the device using [`cpal`].
+    ///
+    /// ```no_run
+    /// # use bevy::prelude::*;
+    /// # use bevy_procedural_audio::prelude::*;
+    /// App::new()
+    ///     .add_plugins((
+    ///         DefaultPlugins,
+    ///         DspPlugin::new(44_100.0),
+    ///     ))
+    ///     .run();
+    /// ```
+    #[allow(clippy::must_use_candidate)]
+    pub fn new(sample_rate: f32) -> Self {
+        Self { sample_rate }
+    }
 }
 
 impl Default for DspPlugin {
@@ -173,26 +163,16 @@ fn default_sample_rate() -> f32 {
 ///
 /// This also includes the `fundsp::hacker32` prelude.
 pub mod prelude {
-  pub use {
-    crate::{
-      backend::{
-        Backend,
-        DefaultBackend,
-        DspAudioExt,
-      },
-      dsp_graph::DspGraph,
-      dsp_manager::DspManager,
-      dsp_source::{
-        DspSource,
-        Iter,
-        IterMono,
-        SourceType,
-      },
-      DspAppExt,
-      DspPlugin,
-    },
-    fundsp::hacker32::*,
-  };
+    pub use {
+        crate::{
+            DspAppExt, DspPlugin,
+            backend::{Backend, DefaultBackend, DspAudioExt},
+            dsp_graph::DspGraph,
+            dsp_manager::DspManager,
+            dsp_source::{DspSource, Iter, IterMono, SourceType},
+        },
+        fundsp::hacker32::*,
+    };
 }
 
 #[doc = include_str!("../README.md")]
