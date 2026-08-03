@@ -44,11 +44,7 @@ pub enum SourceType {
 }
 
 impl DspSource {
-    pub(crate) fn new<D: DspGraph>(
-        dsp_graph: D,
-        sample_rate: f32,
-        source_type: SourceType,
-    ) -> Self {
+    pub fn new<D: DspGraph>(dsp_graph: D, sample_rate: f32, source_type: SourceType) -> Self {
         Self {
             dsp_graph: Arc::new(dsp_graph),
             sample_rate,
